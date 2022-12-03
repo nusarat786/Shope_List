@@ -116,8 +116,8 @@ function ShopeList(props) {
       }}
     
     >
-      <option value="">Area</option>
-      <option selected value="Thane">Thane</option>
+      <option selected value="">Area</option>
+      <option value="Thane">Thane</option>
       <option value="Pune">Pune</option>
       <option value="Mumbai Suburban">Mumbai Suburban</option>
       <option value="Nashik">Nashik</option>
