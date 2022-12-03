@@ -157,11 +157,11 @@ function ShopeList(props) {
       </div>
 
       <br/>
-         
-                <div className="row mx-auto gy-4">
+         <center>
+                <div className="row  gy-4">
                     {itemList}
                 </div>
-     
+          </center>
      </div>
   );
 }
