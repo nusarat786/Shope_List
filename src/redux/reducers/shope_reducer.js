@@ -49,19 +49,10 @@ export const ShopeReducer = (state = intialState, action) => {
       return { ...state, shops:[...state.shops, action.payload]  };
 
     case ActionTypes.DELETE_SHOPE:  
-       return {...state ,shops: state.shops.filter(shope=> action.id !== shope.id)}  
-    
-    
-    case ActionTypes.FILTER_BY_CATEGORY:
-        return{...state,filtered_shops:action.payload.shops,category: action.payload.category} 
+       return {...state ,shops: state.shops.filter(shope=> action.id !== shope.id)}     
 
-
-    case ActionTypes.FILTER_BY_AREA:
-        return{...state,filtered_shops:action.payload.shops,area: action.payload.area}        
-    
-    case ActionTypes.FILTER_BY_STATUS:
-            return{...state,filtered_shops:action.payload.shops,status: action.payload.status}     
-
+    case ActionTypes.FILTER_MAIN:
+                return{...state,filtered_shops:action.payload.shops,status: action.payload.status,area: action.payload.area,category: action.payload.category}         
        
     case ActionTypes.ADD_TO_FILTER:
             return{...state,filtered_shops:action.payload}          

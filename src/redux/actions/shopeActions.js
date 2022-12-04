@@ -24,71 +24,44 @@ export const add_to_filter = (data) => {
 };
 
 
-export const filtershops_area = (main_shops, area) => {
+export const filtershops_all = (main_shops,area,category,status) => {
 
-  console.log(main_shops.filter((x) => x.area.includes(area)))
-  return{
-    type: ActionTypes.FILTER_BY_AREA,    
-    payload: {
-      area: area,
-      shops:
-        area === ""
-          ? main_shops
-          : main_shops.filter(
-              (shope) => shope.area.includes(area)               
-            ),
-    },
-  };
-};
+  function check_status(status, shop){
 
-
-
-export const filtershops_category = (main_shops, category) => {
-
-  console.log(main_shops.filter((x) => x.area.includes(category)))
-  return{
-    type: ActionTypes.FILTER_BY_CATEGORY,    
-    payload: {
-      category: category,
-      shops:
-        category === ""
-          ? main_shops
-          : main_shops.filter(
-              (shope) => shope.category.includes(category)               
-            ),
-    },
-  };
-};
-
-export const filtershops_status = (main_shops, status) => {
+    switch(status){
+                
+      case "close":
+          return  !((shop.opening_date < time) && (  time < shop.closing_date));
+        
+      case "open":
+          return ((shop.opening_date < time) && (  time < shop.closing_date));
+      
+      default:
+        return shop
+      }
+  
+  }
 
   console.log(main_shops.filter((x) => x.area.includes()))
   var time = new Date().getTime()
   console.log(time)
   return{
-    type: ActionTypes.FILTER_BY_STATUS,    
+    type: ActionTypes.FILTER_MAIN,    
     payload: {
       status: status,
+      category: category,
+      area: area,
       shops:
-        status === ""
+        status === "" && category === "" && area === ""
           ? main_shops
           : main_shops.filter(
             function(shop){
-              switch(status){
-              
-              case "close":
-                  return  !((shop.opening_date < time) && (  time < shop.closing_date));
-                
-              case "open":
-                  return ((shop.opening_date < time) && (  time < shop.closing_date));
-              
-              
-              }
+
+              return shop.category.includes(category) && shop.area.includes(area)  &&   check_status(status ,shop)
+            
               }         
             ),
     },
   };
 };
-
-
 

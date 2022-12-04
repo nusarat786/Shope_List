@@ -1,18 +1,20 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import {delete_shope ,filter_by_area  , filtershops_area,add_to_filter , filtershops_category , filtershops_status} from '../redux/actions/shopeActions'
+import {delete_shope , add_to_filter , filtershops_all} from '../redux/actions/shopeActions'
 
 function ShopeList(props) {
 
-  
+  const[category,setCategory] = useState("")
+  const[area,setArea]=useState("")
+  const[status,setStatus]=useState("")
 
 
   var shops = useSelector((state) => {
     return state.shops_red.shops
   })
-  //console.log(shops.allProducts.products)
+
   console.log(shops)
   
 
@@ -28,6 +30,16 @@ function ShopeList(props) {
     dispatch(add_to_filter(shops))
    
   }, [dispatch,shops]);
+
+
+
+  useEffect(() => {
+    
+    dispatch(filtershops_all(shops,area,category,status))
+   
+  }, [dispatch,area,category,status,shops]);
+
+
 
 
   let itemList = filered_shops.map(shop=>{
@@ -87,8 +99,8 @@ function ShopeList(props) {
         id="validationCustom04" 
         name='Area'
         onChange={(event) => {
-       //dispatch(filter_by_category(event.target.value))
-      dispatch(filtershops_category(shops,event.target.value))
+          setCategory(event.target.value)
+    
         }}
     
     
@@ -111,8 +123,11 @@ function ShopeList(props) {
     id="validationCustom04" 
     name='Area'
     onChange={(event) => {
-      //dispatch(filter_by_area(event.target.value , shops))
-      dispatch(filtershops_area(shops,event.target.value))
+
+      setArea(event.target.value)
+
+
+
       }}
     
     >
@@ -139,8 +154,8 @@ function ShopeList(props) {
     id="validationCustom04" 
     name='Area'
     onChange={(event) => {
-      //dispatch(filter_by_area(event.target.value , shops))
-      dispatch(filtershops_status(shops,event.target.value))
+      setStatus(event.target.value)
+
       }}
     
     >

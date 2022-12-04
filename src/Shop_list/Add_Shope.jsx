@@ -32,7 +32,6 @@ function Add_Shope() {
 
     if(onlyLettersAndSpaces(ShopeName)){
 
-     //var id = shops.allshops.products.length + 1
 
      var Shope_Obj = {
 
@@ -199,7 +198,7 @@ function Add_Shope() {
 
       </div>
 
-      
+
 
 
 
